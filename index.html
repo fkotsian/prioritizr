@@ -1,0 +1,101 @@
+<!doctype html>
+<html ng-app="prioritizr">
+  <head>
+    <title>Prioritizr</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="prioritizr.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script type="text/javascript" src="prioritizr.js"></script>
+    
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar">Icon1</span>
+            <span class="icon-bar">Icon2</span>
+            <span class="icon-bar">Icon3</span>
+          </button>
+          <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Link</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">My Account</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>    
+
+    <div class="four-quadrant-wrapper">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="quadrant-wrapper list-group" 
+                 ng-controller="QuadrantController as quadrantCtrl">
+              <div class="quadrant-item" 
+                   ng-repeat="item in quadrantCtrl.items"
+                   ng-controller="ItemController as itemCtrl">
+                <div ng-click="itemCtrl.save(item)">
+                  <li class="list-group-item text-center"
+                      ng-click="itemCtrl.enableEditor(item)">
+                    <input class="input-control form-control-no-border" 
+                           type="text"
+                           ng-model="item.body">
+                  </li>
+                </div>
+              </div>
+              <form name="itemForm" 
+                    ng-submit="quadrantCtrl.addItem()">
+                <div class="form-group">
+                  <li class="list-group-item text-center">
+                    <input class="form-control form-control-no-border text-center" 
+                            type="text" 
+                            name="body" 
+                            ng-model="quadrantCtrl.newItem.body">
+                    </input>
+                  </li>
+                </div>
+              </form>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="quadrant-wrapper list-group" ng-controller="QuadrantController as quadrant">
+              <div class="quadrant-item" ng-repeat="item in quadrant.items">
+                <li class="list-group-item">{{item}}</li>
+              </div>
+              <div class="quadrant-item-new">
+                <li class="list-group-item">
+                  
+                </li>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="col-md-6">
+            <div class="quadrant-wrapper" ng-controller="QuadrantController as quadrant">
+              {{quadrant.items}}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="quadrant-wrapper" ng-controller="QuadrantController as quadrant">
+              {{quadrant.items}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>    
+  </body>
+</html>

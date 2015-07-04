@@ -1,0 +1,12 @@
+.quadrant-item {
+  
+}
+
+.form-control-no-border {
+  outline: none;
+  padding: 0;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
