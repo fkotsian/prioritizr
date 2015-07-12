@@ -29,7 +29,7 @@
     this.newItem = {};
     
     this.addItem = function() {
-      quadrant.items.push(this.newItem);
+      this.items.push(this.newItem);
       this.newItem = {};
     };
     
