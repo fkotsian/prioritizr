@@ -40,14 +40,16 @@
       </div><!-- /.container-fluid -->
     </nav>    
 
-    <div id="four-quadrant-wrapper">
+    <div id="four-quadrant-wrapper"
+         ng-controller="AppController as appCtrl">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="quadrant-wrapper list-group" 
-                 ng-controller="QuadrantController as quadrantCtrl">
+        <div class="former-row">
+          
+          <div class="quadrant-wrapper list-group" 
+               ng-repeat="quadrant in appCtrl.quadrants">
+            <div class="col-md-6">
               <div class="quadrant-item-wrapper" 
-                   ng-repeat="item in quadrantCtrl.items"
+                   ng-repeat="item in quadrant.items"
                    ng-controller="ItemController as itemCtrl"
                    ng-model="item"
                    data-drag="true"
@@ -65,46 +67,23 @@
                   </li>
                 </div>
               </div>
-              <form name="itemForm" 
-                    ng-submit="quadrantCtrl.addItem()">
+              <form ng-submit="quadrant.addItem()">
                 <div class="form-group">
                   <li class="list-group-item text-center">
-                    <input class="form-control form-control-no-border text-center" 
+                    <input class="form-control 
+                                  form-control-no-border 
+                                  text-center" 
                             type="text" 
-                            name="body" 
-                            ng-model="quadrantCtrl.newItem.body">
+                            ng-model="quadrant.newItem.body">
                     </input>
                   </li>
                 </div>
               </form>
-            </div>
-          </div>
-          
-          <div class="col-md-6">
-            <div class="quadrant-wrapper list-group" ng-controller="QuadrantController as quadrant">
-              <div class="quadrant-item" ng-repeat="item in quadrant.items">
-                <li class="list-group-item">{{item}}</li>
-              </div>
-              <div class="quadrant-item-new">
-                <li class="list-group-item">
-                  
-                </li>
-              </div>
-            </div>
-          </div>
-        </div>
-      
-        <div class="row">
-          <div class="col-md-6">
-            <div class="quadrant-wrapper" ng-controller="QuadrantController as quadrant">
               {{quadrant.items}}
+              <br><br>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="quadrant-wrapper" ng-controller="QuadrantController as quadrant">
-              {{quadrant.items}}
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
