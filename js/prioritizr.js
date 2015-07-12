@@ -1,5 +1,5 @@
 (function() {
-  var app = angular.module('prioritizr', []);
+  var app = angular.module('prioritizr', ['ngDragDrop']);
   
   var defaultItems = [
     {
