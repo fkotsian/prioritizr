@@ -29,6 +29,7 @@
     this.newItem = {};
     
     this.addItem = function() {
+      this.newItem.id = this.nextItemId();
       this.items.push(this.newItem);
       this.newItem = {};
     };
@@ -36,6 +37,10 @@
     this.editItem = function(item) {
       var foundItem = $filter('filter')(this.items, {id: item.id}, true)[0];
       foundItem.body = item.body;
+    };
+    
+    this.nextItemId = function() {
+      return this.items[this.items.length-1].id + 1;
     };
   }); 
   

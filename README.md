@@ -10,7 +10,7 @@
 ###Features
 
 - Users can type items in
-Users can rearrange (drag and drop) items between quadrants
+- Users can rearrange (drag and drop) items between quadrants
 Quadrants are styled with light blue/cerulean borders, 1/2" thick and textured (circular grained)
 Dragged boxes are highlighted with light-blue/cerulean dot border
 Item boxes are styled with a border
