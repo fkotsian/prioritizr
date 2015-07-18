@@ -24,12 +24,11 @@
     var dupedItems = [];
     for(i=0;i<itemsToDup.length;i++){
       var itemToDup = itemsToDup[i];
-      var dupedItem = jQuery.extend(true,{}, itemToDup);
+      var dupedItem = jQuery.extend(true,{},itemToDup);
       dupedItems.push(dupedItem);
     }  
     return dupedItems;
   };
-  
   
   app.factory('Quadrant', function() {
     var currQuadrantId = 0;
@@ -43,7 +42,7 @@
       this.items = [];
       this.newItem = {};
       
-      this.addItem = function() {
+      this.addNewItem = function() {
         this.newItem.id = this.nextItemId();
         this.items.push(this.newItem);
         this.newItem = {};      
@@ -69,6 +68,26 @@
     return (Quadrant);
   });
 
+
+  app.factory('Item', function() {
+    var Item = function(id, body) {
+      this.id = null;
+      this.body = "";
+      
+      this.edit = function(newBody) {
+        this.body = newBody;
+      };
+      
+      this.initialize = function(id, body) {
+        this.id = id;
+        this.body = body;
+      };
+      
+      this.initialize(id, body);
+    };
+    
+    return (Item);
+  });
   
   app.controller('AppController', function($scope, Quadrant) {
     this.quadrants = [
@@ -77,6 +96,22 @@
       new Quadrant(),
       new Quadrant()
     ];
+    
+    this.addItem = function(event, ui, quadrant, item) {
+      console.log("ADDING: ");
+      console.log("To quad " + quadrant.id);
+      console.log("Item: " + item.body);
+      quadrant.items.push(item);
+    };
+    
+    this.removeItem = function(event, ui, quadrant, itemPos) {
+
+      console.log("REMOVING: ");
+      console.log("From quad " + quadrant.id);
+
+      console.log("From position: " + itemPos);
+      quadrant.items.splice(itemPos, 1);
+    };
   });
   
   
@@ -85,7 +120,6 @@
     this.readyToSave = false;
 
     this.enableEditor = function(item) {
-      console.log('Triggering');
       console.log("Item: " + item.body);
       this.readyToSave = true;
       this.editableBody = item.body; 

@@ -52,13 +52,15 @@
                    ng-repeat="item in quadrant.items"
                    ng-controller="ItemController as itemCtrl"
                    ng-model="item"
-                   data-drag="true"
-                   jqyoui-draggable="{animate: false}"
                    data-drop="true"
-                   jqyoui-droppable="{containment:'position'}"
+                   jqyoui-droppable="{containment:'position', multiple: 'true', stack: 'true', onDrop: ''}"
                    data-jqyoui-options>
                 <div class="quadrant-item"
-                     ng-click="itemCtrl.save(item)">
+                     data-drag="true"
+                     ng-model="item"                   
+                     jqyoui-draggable="{animate: 'true', onStart: 'appCtrl.removeItem(quadrant, $index)'}"
+                     ng-click="itemCtrl.save(item)"
+                     data-jqyoui-options>
                   <li class="list-group-item text-center"
                       ng-click="itemCtrl.enableEditor(item)">
                     <input class="input-control form-control-no-border" 
@@ -67,7 +69,7 @@
                   </li>
                 </div>
               </div>
-              <form ng-submit="quadrant.addItem()">
+              <form ng-submit="quadrant.addNewItem()">
                 <div class="form-group">
                   <li class="list-group-item text-center">
                     <input class="form-control 
