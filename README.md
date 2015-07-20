@@ -11,7 +11,8 @@
 
 - Users can type items in
 - Users can rearrange (drag and drop) items between quadrants
-Items can be passed between quadrants and become members of that quadrant's collection
+- Items can be passed between quadrants and become members of that quadrant's collection
+Items can be dragged to a certain position in a list
 Quadrants are styled with light blue/cerulean borders, 1/2" thick and textured (circular grained)
 Dragged boxes are highlighted with light-blue/cerulean dot border
 Item boxes are styled with a border

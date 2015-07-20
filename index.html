@@ -47,18 +47,20 @@
           
           <div class="quadrant-wrapper list-group" 
                ng-repeat="quadrant in appCtrl.quadrants">
-            <div class="col-md-6">
-              <div class="quadrant-item-wrapper" 
-                   ng-repeat="item in quadrant.items"
-                   ng-controller="ItemController as itemCtrl"
-                   ng-model="item"
-                   data-drag="true"
-                   jqyoui-draggable="{animate: false}"
-                   data-drop="true"
-                   jqyoui-droppable="{containment:'position'}"
-                   data-jqyoui-options>
+            <div class="quadrant col-md-6"
+                 ng-model="quadrant.items"
+                 data-drop="true"
+                 jqyoui-droppable="{containment:'position', multiple:true}"
+                 data-jqyoui-options>
+              <div class="quadrant-item-wrapper">
                 <div class="quadrant-item"
-                     ng-click="itemCtrl.save(item)">
+                     ng-repeat="item in quadrant.items"
+                     ng-controller="ItemController as itemCtrl"
+                     data-drag="true"
+                     ng-model="quadrant.items"                   
+                     jqyoui-draggable="{index: {{$index}}, animate:false}"
+                     ng-click="itemCtrl.save(item)"
+                     data-jqyoui-options>
                   <li class="list-group-item text-center"
                       ng-click="itemCtrl.enableEditor(item)">
                     <input class="input-control form-control-no-border" 
@@ -67,7 +69,7 @@
                   </li>
                 </div>
               </div>
-              <form ng-submit="quadrant.addItem()">
+              <form ng-submit="quadrant.addNewItem()">
                 <div class="form-group">
                   <li class="list-group-item text-center">
                     <input class="form-control 

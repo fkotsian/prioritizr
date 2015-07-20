@@ -24,12 +24,11 @@
     var dupedItems = [];
     for(i=0;i<itemsToDup.length;i++){
       var itemToDup = itemsToDup[i];
-      var dupedItem = jQuery.extend(true,{}, itemToDup);
+      var dupedItem = jQuery.extend(true,{},itemToDup);
       dupedItems.push(dupedItem);
     }  
     return dupedItems;
   };
-  
   
   app.factory('Quadrant', function() {
     var currQuadrantId = 0;
@@ -43,7 +42,7 @@
       this.items = [];
       this.newItem = {};
       
-      this.addItem = function() {
+      this.addNewItem = function() {
         this.newItem.id = this.nextItemId();
         this.items.push(this.newItem);
         this.newItem = {};      
@@ -69,6 +68,26 @@
     return (Quadrant);
   });
 
+
+  app.factory('Item', function() {
+    var Item = function(id, body) {
+      this.id = null;
+      this.body = "";
+      
+      this.edit = function(newBody) {
+        this.body = newBody;
+      };
+      
+      this.initialize = function(id, body) {
+        this.id = id;
+        this.body = body;
+      };
+      
+      this.initialize(id, body);
+    };
+    
+    return (Item);
+  });
   
   app.controller('AppController', function($scope, Quadrant) {
     this.quadrants = [
@@ -76,7 +95,7 @@
       new Quadrant(),
       new Quadrant(),
       new Quadrant()
-    ];
+    ];    
   });
   
   
@@ -85,7 +104,6 @@
     this.readyToSave = false;
 
     this.enableEditor = function(item) {
-      console.log('Triggering');
       console.log("Item: " + item.body);
       this.readyToSave = true;
       this.editableBody = item.body; 
