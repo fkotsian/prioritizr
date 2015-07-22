@@ -65,8 +65,12 @@
                        data-drag="true"  
                        data-jqyoui-options="{revert: 'invalid'}"
                        ng-click="itemCtrl.enableEditor(item)">
-                    <input class="input-control form-control-no-border" 
+                    <input class="input-control 
+                                  extended-input
+                                  text-center
+                                  form-control-no-border" 
                            type="text"
+                           maxlength="72"
                            ng-model="item.body">
                     </input>
                   </div>
@@ -74,10 +78,12 @@
                 <form ng-submit="quadrant.addNewItem()">
                   <div class="form-group">
                     <li class="list-group-item text-center">
-                      <input class="form-control 
+                      <input class="input-control 
+                                    extended-input
                                     form-control-no-border 
                                     text-center" 
-                              type="text" 
+                              type="text"
+                              maxlength="72" 
                               ng-model="quadrant.newItem.body">
                       </input>
                     </li>
