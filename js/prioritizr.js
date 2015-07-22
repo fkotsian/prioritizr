@@ -1,36 +1,34 @@
 (function() {
   var app = angular.module('prioritizr', ['ngDragDrop']);
 
-  var defaultItems = [
-    {
-      id: 1,
-      body: 'Item1'
-    },
-    {
-      id: 2,
-      body: 'Item2'
-    },
-    {
-      id: 3,
-      body: 'Item3'
-    },
-    {
-      id: 4,
-      body: 'Item4'
-    }
-  ];
+  app.factory('Item', function() {
+    var currItemId = 0;
+    var nextItemId = function() {
+      currItemId += 1;
+      return currItemId;
+    };
+        
+    var Item = function(body) {
+      this.id = null;
+      this.body = "";
+          
+      this.edit = function(newBody) {
+        this.body = newBody;
+      };
+      
+      this.initialize = function(body) {
+        this.id = nextItemId();
+        this.body = body;
+      };
+      
+      this.initialize(body);
+    };
+    
+    return (Item);
+  });
   
-  var dupItems = function(itemsToDup) {
-    var dupedItems = [];
-    for(i=0;i<itemsToDup.length;i++){
-      var itemToDup = itemsToDup[i];
-      var dupedItem = jQuery.extend(true,{},itemToDup);
-      dupedItems.push(dupedItem);
-    }  
-    return dupedItems;
-  };
   
-  app.factory('Quadrant', function() {
+  app.factory('Quadrant', ['Item', function(Item) {
     var currQuadrantId = 0;
     var nextQuadrantId = function() {
       currQuadrantId += 1;
@@ -43,8 +41,7 @@
       this.newItem = {};
       
       this.addNewItem = function() {
-        this.newItem.id = this.nextItemId();
-        this.items.push(this.newItem);
+        this.items.push(new Item(this.newItem.body));
         this.newItem = {};      
       };
   
@@ -52,42 +49,21 @@
         var foundItem = $filter('filter')(this.items, {id: item.id}, true)[0];
         foundItem.body = item.body;
       };
-    
-      this.nextItemId = function() {
-        return this.items[this.items.length-1].id + 1;
-      };
       
       this.initialize = function() {
         this.id = nextQuadrantId();
-        this.items = dupItems(defaultItems);
+        this.items = [new Item('Item1'),
+                      new Item('Item2'),
+                      new Item('Item3'),
+                      new Item('Item4')];
       };
       
       this.initialize();
     };
     
     return (Quadrant);
-  });
+  }]);
 
-
-  app.factory('Item', function() {
-    var Item = function(id, body) {
-      this.id = null;
-      this.body = "";
-      
-      this.edit = function(newBody) {
-        this.body = newBody;
-      };
-      
-      this.initialize = function(id, body) {
-        this.id = id;
-        this.body = body;
-      };
-      
-      this.initialize(id, body);
-    };
-    
-    return (Item);
-  });
   
   app.controller('AppController', function($scope, Quadrant) {
     this.quadrants = [
