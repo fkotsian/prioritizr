@@ -80,13 +80,11 @@
     this.readyToSave = false;
 
     this.enableEditor = function(item) {
-      console.log("Item: " + item.body);
       this.readyToSave = true;
       this.editableBody = item.body; 
     };
     
     this.save = function(item) {
-      console.log("Ready to save? " + this.readyToSave);
       if(this.readyToSave === true) {
         item.body = this.editableBody;  
         this.readyToSave = false;
