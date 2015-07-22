@@ -12,11 +12,14 @@
 - Users can type items in
 - Users can rearrange (drag and drop) items between quadrants
 - Items can be passed between quadrants and become members of that quadrant's collection
-Items can be dragged to a certain position in a list
+- Items can be dragged to a certain position in a list
+
 Quadrants are styled with light blue/cerulean borders, 1/2" thick and textured (circular grained)
 Dragged boxes are highlighted with light-blue/cerulean dot border
 Item boxes are styled with a border
+Item inputs are wide enough for 200chars of text
 
+No need for IDs on items
 
 Quadrants have height
 
@@ -33,3 +36,5 @@ Users can save their items (as cookie, in DB)
 Users can toggle the "Urgent/Important" labels/handrails on/off
 Items are responsive font (items grow and shrink according to window size)
 Items are responsive font (items grow and shrink according to how many items are on page - page has a max width and height (media queries))
+
+Overflow on items generates a scrollable - or simply refuses to add (or adds to a backlog that pops in as desired (we only display the top 5))
