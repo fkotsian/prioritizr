@@ -13,6 +13,7 @@
     <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/angular-1-3-15.min.js"></script>
     <script type="text/javascript" src="js/angular-dragdrop.min.js"></script>
+    <script type="text/javascript" src="js/sortable.js"></script>    
     <script type="text/javascript" src="js/prioritizr.js"></script>    
   </head>
   <body>
@@ -41,46 +42,48 @@
     </nav>    
 
     <div id="four-quadrant-wrapper"
-         ng-controller="AppController as appCtrl">
+        ng-controller="AppController as appCtrl">
       <div class="container-fluid">
         <div class="former-row">
           
-          <div class="quadrant-wrapper list-group" 
+          <div class="quadrant-wrapper list-group col-md-6" 
                ng-repeat="quadrant in appCtrl.quadrants">
-            <div class="quadrant col-md-6"
+            <div class="quadrant"
                  ng-model="quadrant.items"
                  data-drop="true"
-                 jqyoui-droppable="{containment:'position', multiple:true}"
-                 data-jqyoui-options>
-              <div class="quadrant-item-wrapper">
+                 jqyoui-droppable="{multiple:true}"
+                 data-jqyoui-options="{revert: 'invalid'}">
+              <div class="quadrant-items-wrapper"
+                   ng-model="quadrant.items"
+                   ui-sortable="{connectWith: '.quadrant-items-wrapper'}">
                 <div class="quadrant-item"
                      ng-repeat="item in quadrant.items"
                      ng-controller="ItemController as itemCtrl"
-                     data-drag="true"
-                     ng-model="quadrant.items"                   
-                     jqyoui-draggable="{index: {{$index}}, animate:false}"
-                     ng-click="itemCtrl.save(item)"
-                     data-jqyoui-options>
-                  <li class="list-group-item text-center"
-                      ng-click="itemCtrl.enableEditor(item)">
+                     ng-click="itemCtrl.save(item)">
+                  <div class="list-group-item text-center"
+                       ng-model="quadrant.items"                 
+                       data-drag="true"  
+                       data-jqyoui-options="{revert: 'invalid'}"
+                       ng-click="itemCtrl.enableEditor(item)">
                     <input class="input-control form-control-no-border" 
                            type="text"
                            ng-model="item.body">
-                  </li>
-                </div>
-              </div>
-              <form ng-submit="quadrant.addNewItem()">
-                <div class="form-group">
-                  <li class="list-group-item text-center">
-                    <input class="form-control 
-                                  form-control-no-border 
-                                  text-center" 
-                            type="text" 
-                            ng-model="quadrant.newItem.body">
                     </input>
-                  </li>
+                  </div>
                 </div>
-              </form>
+                <form ng-submit="quadrant.addNewItem()">
+                  <div class="form-group">
+                    <li class="list-group-item text-center">
+                      <input class="form-control 
+                                    form-control-no-border 
+                                    text-center" 
+                              type="text" 
+                              ng-model="quadrant.newItem.body">
+                      </input>
+                    </li>
+                  </div>
+                </form>
+              </div>
               {{quadrant.items}}
               <br><br>
             </div>

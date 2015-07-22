@@ -1,5 +1,5 @@
 (function() {
-  var app = angular.module('prioritizr', ['ngDragDrop']);
+  var app = angular.module('prioritizr', ['ngDragDrop', 'ui.sortable']);
 
   app.factory('Item', function() {
     var currItemId = 0;
