@@ -43,59 +43,57 @@
 
     <div id="four-quadrant-wrapper"
         ng-controller="AppController as appCtrl">
-      <div class="container-fluid">
-        <div class="former-row">
-          
-          <div class="quadrant-wrapper list-group col-md-6" 
-               ng-repeat="quadrant in appCtrl.quadrants">
-            <div class="quadrant"
-                 ng-model="quadrant.items"
-                 data-drop="true"
-                 jqyoui-droppable="{multiple:true}"
-                 data-jqyoui-options="{revert: 'invalid'}">
-              <div class="quadrant-items-wrapper"
-                   ng-model="quadrant.items"
-                   ui-sortable="{connectWith: '.quadrant-items-wrapper'}">
-                <div class="quadrant-item"
-                     ng-repeat="item in quadrant.items"
-                     ng-controller="ItemController as itemCtrl"
-                     ng-click="itemCtrl.save(item)">
-                  <div class="list-group-item text-center"
-                       ng-model="quadrant.items"                 
-                       data-drag="true"  
-                       data-jqyoui-options="{revert: 'invalid'}"
-                       ng-click="itemCtrl.enableEditor(item)">
-                    <input class="input-control 
-                                  extended-input
-                                  text-center
-                                  form-control-no-border" 
-                           type="text"
-                           maxlength="72"
-                           ng-model="item.body">
-                    </input>
-                  </div>
-                </div>
-                <form ng-submit="quadrant.addNewItem()">
-                  <div class="form-group">
-                    <li class="list-group-item text-center">
-                      <input class="input-control 
-                                    extended-input
-                                    form-control-no-border 
-                                    text-center" 
-                              type="text"
-                              maxlength="72" 
-                              ng-model="quadrant.newItem.body">
-                      </input>
-                    </li>
-                  </div>
-                </form>
-              </div>
-              <br><br>
-            </div>
-          </div>
 
+      <div ng-repeat="quadrant in appCtrl.quadrants"
+           class="col-md-6
+                  quadrant-wrapper
+                  quadrant-wrapper-{{$index+1}}">
+        <div class="quadrant-{{$index+1}}"
+             ng-model="quadrant.items"
+             data-drop="true"
+             jqyoui-droppable="{multiple:true}"
+             data-jqyoui-options="{revert: 'invalid'}">
+          <div class="quadrant-items-wrapper"
+               ng-model="quadrant.items"
+               ui-sortable="{connectWith: '.quadrant-items-wrapper'}">
+            <div class="quadrant-item"
+                 ng-repeat="item in quadrant.items"
+                 ng-controller="ItemController as itemCtrl"
+                 ng-click="itemCtrl.save(item)">
+              <div class="list-group-item text-center"
+                   ng-model="quadrant.items"                 
+                   data-drag="true"  
+                   data-jqyoui-options="{revert: 'invalid'}"
+                   ng-click="itemCtrl.enableEditor(item)">
+                <input class="input-control 
+                              extended-input
+                              text-center
+                              form-control-no-border" 
+                       type="text"
+                       maxlength="72"
+                       ng-model="item.body">
+                </input>
+              </div>
+            </div>
+            <form ng-submit="quadrant.addNewItem()">
+              <div class="form-group">
+                <li class="list-group-item text-center">
+                  <input class="input-control 
+                                extended-input
+                                form-control-no-border 
+                                text-center" 
+                          type="text"
+                          maxlength="72" 
+                          ng-model="quadrant.newItem.body">
+                  </input>
+                </li>
+              </div>
+            </form>
+          </div>
+          <br><br>
         </div>
       </div>
+
     </div>
     
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
