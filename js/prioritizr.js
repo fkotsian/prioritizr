@@ -34,10 +34,17 @@
       currQuadrantId += 1;
       return currQuadrantId;
     };
+    var quadrantHeaders = [
+      "URGENT",
+      "NOT URGENT",
+      "IMPORTANT",
+      "NOT IMPORTANT"
+    ]
 
     var Quadrant = function(rootScope) {
       this.id = null;
       this.items = [];
+      this.header = "";
       this.newItem = {};
       
       this.addNewItem = function() {
@@ -56,6 +63,7 @@
                       new Item('Item2'),
                       new Item('Item3'),
                       new Item('Item4')];
+        this.header = quadrantHeaders[(this.id-1) % 4];
       };
       
       this.initialize();
