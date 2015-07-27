@@ -1,5 +1,12 @@
 (function() {
-  var app = angular.module('prioritizr', ['ngDragDrop', 'ui.sortable']);
+  var app = angular.module('prioritizr', ['ngDragDrop', 'ui.sortable', 'LocalStorageModule']);
+  
+  app.config(function(localStorageServiceProvider) {
+    localStorageServiceProvider
+      .setPrefix('pr')
+      .setStorageCookie(0)
+      .setStorageCookieDomain('');
+  });
 
   app.factory('Item', function() {
     var currItemId = 0;
@@ -73,13 +80,34 @@
   }]);
 
   
-  app.controller('AppController', function($scope, Quadrant) {
-    this.quadrants = [
-      new Quadrant(),
-      new Quadrant(),
-      new Quadrant(),
-      new Quadrant()
-    ];    
+  app.controller('AppController', function($scope, 
+                                           Quadrant,
+                                           localStorageService) {
+    
+    this.saveState = function() {
+      localStorageService.set('quadrants', JSON.stringify(this.quadrants));
+    };
+    
+    this.fetchState = function() {
+      var storedQuadrants = localStorageService.get('quadrants');
+      if(storedQuadrants != null) {
+        return JSON.parse(storedQuadrants); 
+      } else {
+        return null;
+      } 
+    };
+    
+    this.clearState = function() {
+      return localStorageService.clearAll();
+    };
+    
+    this.quadrants = this.fetchState() || 
+          [
+            new Quadrant(),
+            new Quadrant(),
+            new Quadrant(),
+            new Quadrant()
+          ];
   });
   
   

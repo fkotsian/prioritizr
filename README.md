@@ -21,6 +21,7 @@
 - User can see 2x2 grid with "Urgent" and "Important" labels
 
 Users can save their items (as cookie, in DB)
+Items should auto-save to localStorage, as they are updated (no button press to save)
 Users can drag-and-drop an item to the recycle bin in lower-right corner to remove it
 
 Quadrants have watermarks of roman numerals I, II, III, and IV in background (perhaps no quadrant lines either)
