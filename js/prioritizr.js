@@ -78,20 +78,33 @@
     
     return (Quadrant);
   }]);
+  
+  
+  app.factory('RecycleBin', function() {
+    var RecycleBin = function(rootScope) {
+      this.items = [];
+      this.initialize = function() {};
+      this.initialize();
+    };
+    
+    return (RecycleBin);
+  });
 
   
   app.controller('AppController', function($scope, 
                                            Quadrant,
+                                           RecycleBin,
                                            localStorageService) {
     
     this.saveState = function() {
       localStorageService.set('quadrants', JSON.stringify(this.quadrants));
+      localStorageService.set('recycleBin', JSON.stringify(this.recycleBin));
     };
     
-    this.fetchState = function() {
-      var storedQuadrants = localStorageService.get('quadrants');
-      if(storedQuadrants != null) {
-        return JSON.parse(storedQuadrants); 
+    this.fetchState = function(key) {
+      var storedVal = localStorageService.get(key);
+      if(storedVal != null) {
+        return JSON.parse(storedVal);
       } else {
         return null;
       } 
@@ -101,13 +114,15 @@
       return localStorageService.clearAll();
     };
     
-    this.quadrants = this.fetchState() || 
+    this.quadrants = this.fetchState('quadrants') || 
           [
             new Quadrant(),
             new Quadrant(),
             new Quadrant(),
             new Quadrant()
           ];
+          
+    this.recycleBin = this.fetchState('recycleBin') || new RecycleBin();
   });
   
   

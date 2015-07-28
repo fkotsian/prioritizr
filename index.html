@@ -57,6 +57,7 @@
 
     <div id="four-quadrant-wrapper">
       <div class="container">
+        
         <div ng-repeat="quadrant in appCtrl.quadrants"
              class="col-md-6
                     quadrant-wrapper
@@ -73,7 +74,7 @@
             </div>
             <div class="quadrant-items-wrapper"
                  ng-model="quadrant.items"
-                 ui-sortable="{connectWith: '.quadrant-items-wrapper'}">
+                 ui-sortable="{connectWith: ['.quadrant-items-wrapper', '#recycle-bin-wrapper']}">
               <div class="quadrant-item"
                    ng-repeat="item in quadrant.items"
                    ng-controller="ItemController as itemCtrl"
@@ -110,10 +111,19 @@
             </div>
             <br><br>
           </div>
+        </div><!-- ng-repeat quadrants -->
+        <div id="recycle-bin-wrapper" 
+             ng-model="appCtrl.recycleBin.items"
+             data-drop="true"
+             jqyoui-droppable="{multiple:true, onDrop: 'function(){console.log(000)}', onOver: 'function(){console.log(1111)}'}"
+             data-jqyoui-options="{revert: 'invalid'}">
+          <div id="recycle-bin">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          </div>
         </div>
+        
       </div>
-
-    </div>
+    </div><!-- four-quadrant-wrapper -->
     
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
   </body>
