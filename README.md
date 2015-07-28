@@ -20,8 +20,7 @@
 - Quadrants have height (1/4 page)
 - User can see 2x2 grid with "Urgent" and "Important" labels
 
-Users can save their items (as cookie, in DB)
-Items should auto-save to localStorage, as they are updated (no button press to save)
+- Users can save their items (as cookie, in DB)
 Users can drag-and-drop an item to the recycle bin in lower-right corner to remove it
 
 Quadrants have watermarks of roman numerals I, II, III, and IV in background (perhaps no quadrant lines either)
@@ -38,6 +37,10 @@ Mobile view:
 Users can click items 1-2-3 times to change the box's color (red-yellow-green-0)
 Users can double-click an item to trigger a removal dialog
 Users can shift-click an item to grey it out
+
+Font (and headers and icons) should resize depending on screen size (sm, md, lg)
+
+Items should auto-save to localStorage, as they are updated (no button press to save)
 
 Items are default 64-pt font
 
