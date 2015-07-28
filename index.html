@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css">
     <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     
     <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui.min.js"></script>
@@ -90,6 +91,18 @@
                          type="text"
                          maxlength="72"
                          ng-model="item.body">
+                    <div class="item-button-wrapper pull-right">
+                      <button type="button" 
+                              class="btn btn-link check-button"
+                              ng-click="appCtrl.completeItem(quadrant, $index)">
+                        <i class="fa fa-check"></i>
+                      </button>
+                      <button type="button" 
+                              class="btn btn-link cross-button"
+                              ng-click="appCtrl.deleteItem(quadrant, $index)">
+                        <i class="fa fa-times"></i>
+                      </button>
+                    </div>
                   </input>
                 </div>
               </div>

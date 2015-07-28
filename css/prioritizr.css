@@ -104,3 +104,23 @@ html, body {
   -moz-box-shadow: none !important;
   box-shadow: none !important;
 }
+
+/***********************************/
+/* ITEM BUTTON STYLES */
+/***********************************/
+
+.check-button {
+  color: green;
+  padding: .15em;
+  
+  position: relative;
+  bottom: .2em;
+}
+
+.cross-button {
+  color: darkred;
+  padding: .15em;
+
+  position: relative;
+  bottom: .2em;
+}

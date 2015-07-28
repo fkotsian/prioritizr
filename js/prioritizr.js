@@ -101,6 +101,18 @@
       return localStorageService.clearAll();
     };
     
+    
+    this.completeItem = function(quadrant, itemIdx) {
+      console.log(quadrant);
+      console.log(itemIdx);
+      quadrant.items.splice(itemIdx, 1);
+    };
+    
+    this.deleteItem = function(quadrant, itemIdx) {
+      quadrant.items.splice(itemIdx, 1);
+    };
+    
+    
     this.quadrants = this.fetchState() || 
           [
             new Quadrant(),
@@ -109,7 +121,6 @@
             new Quadrant()
           ];
   });
-  
   
   app.controller('ItemController', function() {
     this.editableBody = "";
