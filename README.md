@@ -21,7 +21,11 @@
 - User can see 2x2 grid with "Urgent" and "Important" labels
 
 - Users can save their items (as cookie, in DB)
-Users can drag-and-drop an item to the recycle bin in lower-right corner to remove it
+Users can approve (check) or remove (x) items from each list
+  On check, a green alert fills with "Congrats on completing item ____!"
+  On cross, a red alert fills with "You have deleted item ____."
+
+When deleting items, Quadrant should remain at same size (may need to implement media queries?)
 
 Quadrants have watermarks of roman numerals I, II, III, and IV in background (perhaps no quadrant lines either)
 Quadrants have "Urgent" "Important" "Urgent" "Not Important" watermarks in background (perhaps without quadrant lines as well)
@@ -58,3 +62,5 @@ Add bootstrap progress bars that compares number of items in your quadrant to 0 
 Pop-up alerts on item completion ("Good job!" or even "Good job! You completed an item in Quadrant II - the most important Quadrant to focus on!")
 
 Feature that tells you what to prioritize next ("The last 5 items you completed were QII... do 1 in Q1..." etc.)
+
+Users can drag-and-drop an item to the recycle bin in lower-right corner to remove it
